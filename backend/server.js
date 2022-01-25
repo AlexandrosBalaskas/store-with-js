@@ -6,7 +6,7 @@ const app = express();
 
 
 
-const port = 4000;
+const port = process.env.PORT || 4000 
 app.use(cors());
 
 app.use(express.static('public'))
@@ -28,4 +28,4 @@ app.get('/api/products/:id', (req,res) => {
     res.send(data.products[req.params.id]);
 });
 
-app.listen(process.env.PORT || port);
+app.listen(port);
