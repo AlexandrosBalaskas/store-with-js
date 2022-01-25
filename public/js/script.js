@@ -8,9 +8,9 @@ var homescreen = {
             `
             <div class="item">
                 <div class="img">
-                    <a href="/store_site/frontend/#/product/${element.id}"><img src=${element.image}></a>
+                    <a href="/#/product/${element.id}"><img src=${element.image}></a>
                 </div>
-                <a href="/store_site/frontend/#/product/${element.id}"><h3> ${element.name}</h3></a>
+                <a href="/#/product/${element.id}"><h3> ${element.name}</h3></a>
                 <h2> $${element.price}</h2>
             </div>`;
         } )
@@ -36,7 +36,7 @@ var productscreen = {
             <div class="details">
                 <p>${resource.name}</p>
                 <h1>$${resource.price}</h1>
-                <a class="cartButton"  href="/store_site/frontend/#/cart/${resource.id}"><p>Add to Cart</p></a>           
+                <a class="cartButton"  href="/#/cart/${resource.id}"><p>Add to Cart</p></a>           
             </div>
         </div>`;
     }
