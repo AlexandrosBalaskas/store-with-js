@@ -1,7 +1,7 @@
 var homescreen = {
     render: async() => {
         var domProducts=`<div class='homeContainer'>`;
-        const response = await fetch('http://localhost:4000/api/products');
+        const response = await fetch('https://afternoon-fortress-34274.herokuapp.com/api/products');
         const resource = await response.json();
         resource.forEach((element) => {
             domProducts  = domProducts + 
@@ -23,7 +23,7 @@ var productscreen = {
     render: async() => {
         const urli = window.location.hash;
         const urlparts = urli.split("/");
-        const response = await fetch(`http://localhost:4000/api/products/${urlparts[2]}`);
+        const response = await fetch(`https://afternoon-fortress-34274.herokuapp.com/api/products/${urlparts[2]}`);
         const resource = await response.json();
         return `
         <div class="productContainer">
@@ -51,7 +51,7 @@ var cartscreen = {
         console.log(urli)
         if(urlparts[2])
         {
-        const response = await fetch(`http://localhost:4000/api/products/${urlparts[2]}`);
+        const response = await fetch(`https://afternoon-fortress-34274.herokuapp.com/api/products/${urlparts[2]}`);
         const resource = await response.json();
         const product = JSON.stringify(resource);
         localStorage.setItem(resource.name,product);
