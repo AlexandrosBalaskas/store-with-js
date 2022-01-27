@@ -139,7 +139,8 @@ main .homeContainer{
 .cartItem{
     width: 70%;
     margin: auto;
-    border: 1px solid black;
+    margin-bottom: 3px;
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.356);
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -156,10 +157,34 @@ main .homeContainer{
 .cartItem img{
     height: 100px;
 }
-
-.cartContainer .text{
+.cartItem i{
+    cursor: pointer;
+}
+.cartContainer .totalbuy{
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    
+}
+.cartContainer .texttotal{
+    padding: 10px;
     font-size: 20px;
-    border: 1px solid green;
+    font-weight: bolder;
+}
+.cartContainer .text{
+    cursor: pointer;
+    font-size: 20px;
+    padding: 10px 15px 10px 15px;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 3px;
+}
+.cartContainer .text:hover{
+    color: white;
+    background-color: black;
+    transition: 0.5s;
 }
 footer h2{
     display: inline-block;

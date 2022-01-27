@@ -1,7 +1,16 @@
 var homescreen = {
     render: async() => {
+        const urli = window.location.hash;
+        const urlparts = urli.split("/");
+        console.log(urlparts[1])
         var domProducts=`<div class='homeContainer'>`;
-        const response = await fetch('https://afternoon-fortress-34274.herokuapp.com/api/products');
+        let response = null ;
+        if(urlparts[1]){
+            response = await fetch(`http://localhost:4000/api/${urlparts[1]}`);
+        }
+        else{
+            response = await fetch(`http://localhost:4000/api/products/`);
+        }
         const resource = await response.json();
         resource.forEach((element) => {
             domProducts  = domProducts + 
@@ -23,7 +32,7 @@ var productscreen = {
     render: async() => {
         const urli = window.location.hash;
         const urlparts = urli.split("/");
-        const response = await fetch(`https://afternoon-fortress-34274.herokuapp.com/api/products/${urlparts[2]}`);
+        const response = await fetch(`http://localhost:4000/api/products/${urlparts[2]}`);
         const resource = await response.json();
         return `
         <div class="productContainer">
@@ -51,7 +60,7 @@ var cartscreen = {
         console.log(urli)
         if(urlparts[2])
         {
-        const response = await fetch(`https://afternoon-fortress-34274.herokuapp.com/api/products/${urlparts[2]}`);
+        const response = await fetch(`http://localhost:4000/api/products/${urlparts[2]}`);
         const resource = await response.json();
         const product = JSON.stringify(resource);
         localStorage.setItem(resource.name,product);
@@ -82,7 +91,13 @@ var cartscreen = {
         }
         
         console.log(getproduct);
-        return `<div class='cartContainer'>${displayProducts}<div class='text'>Total:$${totalPrice}</div></div>`
+        return `
+        <div class='cartContainer'>${displayProducts}
+            <div class='totalbuy'>
+                <div class='texttotal'>Total:$${totalPrice}</div>
+                <div class='text'>Buy</div>
+            </div>    
+        </div>`
     }
 }
 
@@ -98,6 +113,10 @@ const urlgetter = () => {
 }
 var routes = {
     "/" : homescreen,
+    "/dresses" : homescreen,
+    "/skirts" : homescreen,
+    "/trousers" : homescreen,
+    "/tops" : homescreen,
     "/product/:id" : productscreen,
     "/cart/:id" : cartscreen,
     "/cart" : cartscreen
@@ -108,8 +127,7 @@ const router = async() => {
     var screen = routes[url];
     url='/';
     document.getElementById("main").innerHTML= await screen.render();
-    const buy = document.querySelector('.text')
-    console.log(buy)
+    const buy = document.querySelector('.text');
     if (buy!=null){
         buy.addEventListener('click',()=>{
             getproduct.forEach(e=>{
