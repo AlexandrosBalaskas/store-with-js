@@ -6,10 +6,10 @@ var homescreen = {
         var domProducts=`<div class='homeContainer'>`;
         let response = null ;
         if(urlparts[1]){
-            response = await fetch(process.env.NODE_ENV === "production" ? `api/${urlparts[1]}` : `http://localhost:4000/api/${urlparts[1]}`);
+            response = await fetch(`api/${urlparts[1]}`);
         }
         else{
-            response = await fetch(process.env.NODE_ENV === "production" ? `api/products/` : `http://localhost:4000/api/products/`);
+            response = await fetch(`api/products/`);
         }
         const resource = await response.json();
         resource.forEach((element) => {
@@ -32,7 +32,7 @@ var productscreen = {
     render: async() => {
         const urli = window.location.hash;
         const urlparts = urli.split("/");
-        const response = await fetch(process.env.NODE_ENV === "production" ? `api/${urlparts[2]}` : `http://localhost:4000/api/products/${urlparts[2]}`);
+        const response = await fetch(`api/${urlparts[2]}`);
         const resource = await response.json();
         return `
         <div class="productContainer">
